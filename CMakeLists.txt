@@ -4,9 +4,18 @@ project(IMAGETOASCII)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
 set(SDL_LIB "${CMAKE_SOURCE_DIR}/libs/SDL/libSDL3-debug.a")
 set(SDL_INCLUDE "${CMAKE_SOURCE_DIR}/libs/SDL/include")
+set(IMGUI_INCLUDE "${CMAKE_SOURCE_DIR}/libs/imgui/include")
+
+set(IMGUI_DIR "${CMAKE_SOURCE_DIR}/libs/imgui")  # Point to the root ImGui folder
+file(GLOB IMGUI_SOURCES
+    "${IMGUI_DIR}/*.cpp"
+    "${IMGUI_DIR}/backends/imgui_impl_sdl3.cpp"
+    "${IMGUI_DIR}/backends/imgui_impl_sdlrenderer3.cpp"
+)
 
 add_executable(${PROJECT_NAME} WIN32
     src/main.cpp
+    ${IMGUI_SOURCES}
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE
@@ -19,6 +28,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 
 target_include_directories(${PROJECT_NAME} PRIVATE 
     ${SDL_INCLUDE}
+    ${IMGUI_INCLUDE}
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE

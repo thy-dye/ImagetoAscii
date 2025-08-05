@@ -8,4 +8,4 @@ things I've learned as a result of this project so far
 * how to use libraries with multiple sources
     * static libraries
     * dynamic libraries
-    * linux package managers and 
+    * linux package managers and how they work
